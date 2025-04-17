@@ -1,0 +1,137 @@
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; left: 0; width: 100%; height: 100% }
+.map-popup-img { 
+    margin: auto;
+    display: block;
+    width: 240px;
+    height: 200px;
+    max-height: 30vh;
+    object-fit: cover;
+}
+
+.map-popup-text {
+    padding: 10px;
+}
+
+.mapboxgl-popup {
+    color: #000;
+    z-index: 500;
+    font-family: "Twklausanne 400",sans-serif;
+    font-size: 1.3em;
+    opacity: 1;
+}
+
+.mapboxgl-popup h3 {
+    font-size: 1.1em;
+    padding-bottom: 8px;
+}
+
+.mapboxgl-popup p {
+    padding-bottom: 5px;
+}
+
+.mapboxgl-popup a {
+    color: #000;
+}
+
+.mapboxgl-popup-content {
+    padding: 0px;
+}
+
+@media screen and (max-width:767px) {
+
+}
+
+.mapboxgl-marker {
+    cursor: pointer;
+}
+
+.map-list-btn, .map-close-list {
+    clear: both;
+    pointer-events: auto;
+    color: #000;
+    background-color: #fff;
+    margin: 10px;
+}
+
+.map-list-btn {
+    padding: 4px 14px;
+    border-radius: 10px;
+}
+
+.map-list-ctrl {
+    color: #000;
+}
+
+.map-list-btn:hover {
+    color: #fff;
+    background-color: #000;
+
+}
+
+.map-list-div {
+    background-color: #fff;
+    padding: 14px;
+}
+
+#map-list-sidebar {
+    display: none;
+    padding-top: 0;
+    margin-top: 0;
+    min-width: 300px;
+    height: 100vh;
+    padding-left: 2em;
+}
+
+
+.map-link {
+    text-decoration: none;
+}
+
+.poi-category {
+    margin-bottom: 10px;
+}
+
+.map-header, .arrow {
+    display: inline-block;
+    cursor: pointer;
+    padding-top: 0px;
+    pointer-events: auto;
+    font-size: 1.4em;
+    font-weight: bold;
+    border-bottom: black solid;
+}
+
+.map-header {
+    padding-bottom: 16px;
+}
+
+.arrow {
+    margin-right: 5px;
+    padding: 16px 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.item-list {
+    list-style-type: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 0px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.item-list.collapsed {
+    max-height: 0;
+    opacity: 0;
+}
+
+.poi-category.collapsed .arrow {
+    transform: rotate(-180deg);
+}
+
+
+.poi-listing {
+    pointer-events: auto;
+    cursor: pointer;
+}
