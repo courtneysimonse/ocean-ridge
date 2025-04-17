@@ -2,8 +2,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY291cnRuZXlzaW1vbnNlIiwiYSI6ImNqZGozNng0NjFqZ
 const startingOpts = {
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/outdoors-v12',
-    center: [-78.489, 33.943],
-    zoom: 14.5
+    center: [-78.487, 33.932], // starting position [lng, lat]
+    zoom: 13.5
 }
 
 const map = new mapboxgl.Map(startingOpts);
@@ -15,13 +15,22 @@ map.addControl(
     })
 );
 
-map.addControl(new mapboxgl.GeolocateControl({
+const geolocate = new mapboxgl.GeolocateControl({
     positionOptions: {
         enableHighAccuracy: true
     },
     trackUserLocation: true,
     showUserHeading: true
-}));
+})
+map.addControl(geolocate);
+
+let userCoords = [];
+
+geolocate.on('geolocate', function(e) {
+    var lng = e.coords.longitude;
+    var lat = e.coords.latitude
+    userCoords = [lng, lat];
+});
 
 const popup = new mapboxgl.Popup({
     offset: {
@@ -34,8 +43,6 @@ const popup = new mapboxgl.Popup({
 
 map.on('load', () => {
 
-    // https://docs.google.com/spreadsheets/d/1hEN4OK59Nuicj0Ct19Iyu0TFhCI6_squaxSthxJK7aY/edit?usp=sharing
-
     d3.csv('locations.csv', (d) => {
         return {
             type: "Feature",
@@ -44,7 +51,7 @@ map.on('load', () => {
                 category: d.Category,
                 address: d.Address,
                 symbol: d.Symbol,
-                image: d.Image
+                description: d.Description
             },
             geometry: {
                 type: "Point",
@@ -119,7 +126,7 @@ map.on('load', () => {
                 const menuData = [];
 
                 // loop through categories
-                const categories = ['Attractions', 'Hotels', 'Transit'];
+                const categories = ['Main', 'Beach House'];
                 categories.forEach(cat => {
                     // create category for menuData
                     let catData = {
@@ -176,6 +183,13 @@ map.on('load', () => {
                         console.log(poi);
 
                         openPopup(poi);
+
+                        if (!map.getBounds().contains(poi.geometry.coordinates)) {
+                            map.flyTo({
+                                center: poi.geometry.coordinates,
+                                zoom: 15
+                            });
+                        }
                     });
 
                 // Toggle category
@@ -269,13 +283,12 @@ map.on('load', () => {
             // Copy coordinates array.
             const coordinates = feature.geometry.coordinates.slice();
             const name = feature.properties.name;
-            const link = feature.properties.link;
+            const description = feature.properties.description;
 
             const popupHtml = `
-                <img class="map-popup-img" src="images/${feature.properties.image}" />
                 <div class="map-popup-text">
                     <h3>${name}</h3>
-                    <a href="${link}" target="_blank">directions</a>
+                    <p>${description}</p>
                 </div>
             `
             
@@ -286,13 +299,20 @@ map.on('load', () => {
             // draw the route to the POI
             const featureCoords = feature.geometry.coordinates;
 
-            // // directions API request.
-            // var reqUrl = "https://api.mapbox.com/directions/v5/mapbox/walking/" + empireCoords[0] + '%2C' + empireCoords[1] + '%3B' + featureCoords[0] + '%2C' + featureCoords[1] + "?alternatives=false&geometries=geojson&steps=false&access_token=" + mapboxgl.accessToken;
+            // get coordinates of the user
+            geolocate.trigger();
+
+            geolocate.once('geolocate', function(e) {
+
+                // directions API request.
+                var reqUrl = "https://api.mapbox.com/directions/v5/mapbox/driving/" + userCoords[0] + '%2C' + userCoords[1] + '%3B' + featureCoords[0] + '%2C' + featureCoords[1] + "?alternatives=false&geometries=geojson&steps=false&access_token=" + mapboxgl.accessToken;
 
 
-            // d3.json(reqUrl).then(function (d) {
-            //     addRoute(d);
-            // })
+                d3.json(reqUrl).then(function (d) {
+                    addRoute(d);
+                })
+            })
+
 
         }
 

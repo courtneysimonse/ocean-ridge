@@ -1,7 +1,7 @@
 ﻿Name,Category,Address,Symbol,Lng,Lat,Description
-Plantation club fitness center - (PC fitness center),Attractions,190 Ocean Ridge Parkway,dot-11,-78.48944625,33.9428115,Indoor Pool;Outdoor Pool;Fitness Center;Pickleball courts;Tennis court
-Ridge Campus,Attractions,6637 Cadbury Lane,dot-11,-78.47893279,33.9238459,Ridge Center - meeting rooms / Managers office;Event lawn;Outdoor pool;Pickleball courts
-Sunset Beach,Attractions,10 E. Main Street,dot-11,-78.50638036,33.86858438,Beach house
-Beach house overflow parking,Attractions,Corner of N. Shore Dr. W  & Sunset Blvd S.,dot-11,-78.508284,33.871113,Beach house overflow parking
-Garden Center,Attractions,,dot-11,-78.49843,33.936851,Garden Center
-Pavilion,Attractions,524 Braeloch Point SW,dot-11,-78.46198311,33.94027897,Pavilion;Bocci Court;Horse Show pits
+Plantation Club Fitness Center,Main,190 Ocean Ridge Parkway,dot-11,-78.48944625,33.9428115,"Indoor Pool, Outdoor Pool, Fitness Center, Pickleball courts, Tennis court"
+Ridge Campus,Main,6637 Cadbury Lane,dot-11,-78.47893279,33.9238459,"Ridge Center - meeting rooms / Managers office, Event lawn, Outdoor pool, Pickleball courts"
+Sunset Beach,Beach House,10 E. Main Street,dot-11,-78.50638036,33.86858438,Beach house
+Beach House Overflow Parking,Beach House,Corner of N. Shore Dr. W  & Sunset Blvd S.,dot-11,-78.508284,33.871113,
+Garden Center,Main,,dot-11,-78.49843,33.936851,
+Pavilion,Main,524 Braeloch Point SW,dot-11,-78.46198311,33.94027897,"Pavilion, Bocci Court, Horse Show pits"
