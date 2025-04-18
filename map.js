@@ -1,7 +1,7 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiY291cnRuZXlzaW1vbnNlIiwiYSI6ImNqZGozNng0NjFqZWIyd28xdDJ2MXduNTcifQ.PoSFtqfsq1di1IDXzlN4PA';
 const startingOpts = {
     container: 'map', // container ID
-    style: 'mapbox://styles/mapbox/outdoors-v12',
+    style: 'mapbox://styles/courtneysimonse/cm9m3s4hx00ad01rz6mwx8zlb',
     center: [-78.487, 33.932], // starting position [lng, lat]
     zoom: 13.5
 }
