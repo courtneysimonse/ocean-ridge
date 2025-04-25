@@ -2,7 +2,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY291cnRuZXlzaW1vbnNlIiwiYSI6ImNqZGozNng0NjFqZ
 const startingOpts = {
     container: 'map', // container ID
     style: 'mapbox://styles/courtneysimonse/cm9m3s4hx00ad01rz6mwx8zlb',
-    center: [-78.487, 33.932], // starting position [lng, lat]
+    center: [-78.487, 33.930], // starting position [lng, lat]
     zoom: 13.5
 }
 
@@ -126,7 +126,7 @@ map.on('load', () => {
                 const menuData = [];
 
                 // loop through categories
-                const categories = ['Main', 'Beach House'];
+                const categories = ['Main Campus', 'Beach House', 'Haddington Place Neighborhood', 'Waterbrook Woods Neighborhood'];
                 categories.forEach(cat => {
                     // create category for menuData
                     let catData = {
@@ -285,15 +285,23 @@ map.on('load', () => {
             const name = feature.properties.name;
             const description = feature.properties.description;
 
-            const popupHtml = `
-                <div class="map-popup-text">
-                    <h3>${name}</h3>
-                    <p>${description}</p>
-                </div>
-            `
+            const popupEl = document.createElement('div');
+            popupEl.className = 'map-popup-text';
+
+            const nameEl = document.createElement('h3');
+            nameEl.textContent = name;
+            popupEl.appendChild(nameEl);
+            console.log(description);
+            if (description.length > 0) {
+                console.log(description);
+                
+                const descEl = document.createElement('p');
+                descEl.textContent = description;
+                popupEl.appendChild(descEl);
+            }
             
             popup.setLngLat(coordinates)
-                .setHTML(popupHtml)
+                .setHTML(popupEl.outerHTML)
                 .addTo(map);
 
             // draw the route to the POI

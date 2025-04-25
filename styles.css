@@ -24,6 +24,7 @@ body { margin: 0; padding: 0; }
 .mapboxgl-popup h3 {
     font-size: 1.1em;
     padding-bottom: 8px;
+    max-width: 120px;
 }
 
 .mapboxgl-popup p {
