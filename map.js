@@ -12,7 +12,8 @@ map.addControl(
     new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl
-    })
+    }),
+    'bottom-left'
 );
 
 const geolocate = new mapboxgl.GeolocateControl({
